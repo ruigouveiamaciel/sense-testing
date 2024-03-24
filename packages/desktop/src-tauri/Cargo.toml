@@ -9,13 +9,16 @@ default-run = "sense-desktop"
 edition = "2021"
 rust-version.workspace = true
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "sense_desktop_lib"
+crate-type = ["lib", "cdylib", "staticlib"]
 
 [build-dependencies]
 tauri-build = { workspace = true, features = [] }
 
 [dependencies]
 tauri = { workspace = true, features = [] }
+tauri-plugin-shell = { workspace = true }
 serde_json = { workspace = true }
 serde = { workspace = true, features = ["derive"] }
 

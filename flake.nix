@@ -40,7 +40,7 @@
 
       libraries = with pkgs; [
         webkitgtk
-        gtk3
+        gtk4
         cairo
         gdk-pixbuf
         glib
@@ -56,9 +56,9 @@
         dbus
         openssl_3
         glib
-        gtk3
-        libsoup
-        webkitgtk
+        gtk4
+        libsoup_3
+        webkitgtk_4_1
         librsvg
 
         playwright-driver.browsers

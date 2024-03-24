@@ -1,0 +1,23 @@
+{
+  "name": "@scientisst/sense-web",
+  "version": "3.0.0-alpha.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "npm run test:integration && npm run test:unit",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "prettier --check . && eslint .",
+    "format": "prettier --write .",
+    "test:integration": "playwright test",
+    "test:unit": "vitest --run"
+  },
+  "dependencies": {
+    "@scientisst/sense-ui": "workspace:*"
+  },
+  "type": "module"
+}

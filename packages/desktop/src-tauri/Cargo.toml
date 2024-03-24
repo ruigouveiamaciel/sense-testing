@@ -1,12 +1,12 @@
 [package]
 name = "sense-desktop"
-version = "3.0.0-alpha.0"
 description = "Sense DESKTOP"
-authors = ["Rui Maciel <ruigouveiamaciel@proton.me>"]
-license = "MIT"
-repository.workspace = true
 default-run = "sense-desktop"
-edition = "2021"
+version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+edition.workspace = true
 rust-version.workspace = true
 
 [lib]

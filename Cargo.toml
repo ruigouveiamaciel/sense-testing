@@ -1,10 +1,15 @@
 [workspace]
 resolver = "2"
-package.repository = "https://github.com/scientisst/sense-web"
-package.rust-version = "1.77"
 members = [
   "packages/desktop/src-tauri"
 ]
+
+packacge.version = "3.0.0-alpha.0"
+package.authors = ["Rui Maciel <ruigouveiamaciel@proton.me>"]
+package.license = "MIT"
+package.repository = "https://github.com/scientisst/sense-web"
+package.rust-version = "1.77"
+package.edition = "2021"
 
 [workspace.dependencies]
 tauri-build = "2.0.0-beta.10"

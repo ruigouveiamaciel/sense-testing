@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+package.repository = "https://github.com/scientisst/sense-web"
+package.rust-version = "1.77"
+members = [
+  "packages/desktop/src-tauri"
+]
+
+[workspace.dependencies]
+tauri-build = "1.5.1"
+tauri = "1.6.1"
+serde_json = "1.0"
+serde = "1.0"

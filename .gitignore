@@ -23,3 +23,7 @@ packages/*/package
 packages/*/node_modules
 packages/*/vite.config.js.timestamp-*
 packages/*/vite.config.ts.timestamp-*
+
+# Cargo
+/target
+packages/*/src-tauri/target

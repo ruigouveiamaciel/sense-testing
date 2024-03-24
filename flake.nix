@@ -88,14 +88,12 @@
             pre-commit.hooks = {
               clippy = {
                 enable = true;
-                packageOverrides = {
-                  cargo = rust-toolchain;
-                  clippy = rust-toolchain;
-                };
-                settings = {
-                  allFeatures = true;
-                }
-              }
+                entry = pkgs.lib.mkDefault "cargo clippy --all-targets --all-features -- -D warnings";
+              };
+              eslint = {
+                enable = true;
+                entry = pkgs.lib.mkDefault "pnpm lint";
+              };
             };
           })
         ];

@@ -3,6 +3,12 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     rust-overlay.url = "github:oxalica/rust-overlay";
     flake-utils.url = "github:numtide/flake-utils";
+    devenv.url = "github:cachix/devenv";
+  };
+
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
   };
 
   outputs = {
@@ -10,7 +16,8 @@
     nixpkgs,
     flake-utils,
     rust-overlay,
-  }:
+    devenv,
+  } @ inputs:
     flake-utils.lib.eachDefaultSystem (system: let
       inherit (nixpkgs) lib;
 
@@ -20,68 +27,78 @@
       };
 
       rust-toolchain = pkgs.rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
-      llvm = pkgs.llvmPackages_17;
-
-      clangBuildInputs = with llvm; [
-        clang
-        libclang
-        libcxx
-        lld
-        lldb
-      ];
-
-      nativeBuildInputs = with pkgs;
-        [
-          pkg-config
-          rust-toolchain
-          cmake
-        ]
-        ++ clangBuildInputs;
-
-      libraries = with pkgs; [
-        webkitgtk
-        gtk4
-        cairo
-        gdk-pixbuf
-        glib
-        dbus
-        openssl_3
-        librsvg
-      ];
-
-      packages = with pkgs; [
-        curl
-        wget
-        pkg-config
-        dbus
-        openssl_3
-        glib
-        gtk4
-        libsoup_3
-        webkitgtk_4_1
-        librsvg
-
-        playwright-driver.browsers
-        nodejs_20
-        nodePackages.pnpm
-      ];
+      gtk-package = pkgs.gtk4;
     in {
       formatter = pkgs.alejandra;
 
-      devShell = pkgs.mkShell {
-        nativeBuildInputs = nativeBuildInputs;
-        buildInputs = packages;
+      devShell = devenv.lib.mkShell {
+        inherit inputs pkgs;
+        modules = [
+          ({
+            pkgs,
+            config,
+            ...
+          }: {
+            packages = with pkgs; [
+              # Rust
+              rust-toolchain
 
-        shellHook = ''
-          export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath libraries}:$LD_LIBRARY_PATH
-          export XDG_DATA_DIRS=${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:$XDG_DATA_DIRS
-          export RUST_SRC_PATH=${rust-toolchain}
-          export RUST_BACKTRACE=1
-          export LIBCLANG_PATH="${llvm.libclang.lib}/lib";
-          export WEBKIT_DISABLE_COMPOSITING_MODE=1
-          export PLAYWRIGHT_BROWSERS_PATH=${pkgs.playwright-driver.browsers}
-          export PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=true
-        '';
+              # Tauri dependencies
+              gtk-package
+              curl
+              wget
+              pkg-config
+              dbus
+              openssl_3
+              glib
+              libsoup_3
+              webkitgtk_4_1
+              librsvg
+
+              # Playwright dependencies
+              playwright-driver.browsers
+            ];
+
+            env = {
+              # Rust
+              RUST_SRC_PATH = rust-toolchain;
+              RUST_BACKTRACE = 1;
+
+              # Tauri
+              XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${gtk-package}/share/gsettings-schemas/${gtk-package.name}:$XDG_DATA_DIRS";
+              WEBKIT_DISABLE_COMPOSITING_MODE = 1;
+
+              # Playwright
+              PLAYWRIGHT_BROWSERS_PATH = pkgs.playwright-driver.browsers;
+              PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
+            };
+
+            languages = {
+              javascript = {
+                enable = true;
+                package = pkgs.nodejs_20;
+                pnpm = {
+                  enable = true;
+                  package = pkgs.nodePackages.pnpm;
+                  install.enable = false;
+                };
+              };
+            };
+
+            pre-commit.hooks = {
+              clippy = {
+                enable = true;
+                packageOverrides = {
+                  cargo = rust-toolchain;
+                  clippy = rust-toolchain;
+                };
+                settings = {
+                  allFeatures = true;
+                }
+              }
+            };
+          })
+        ];
       };
     });
 }

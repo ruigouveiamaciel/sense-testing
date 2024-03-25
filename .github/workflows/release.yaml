@@ -23,6 +23,12 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
       - name: Setup Rust
         uses: actions-rust-lang/setup-rust-toolchain@v1
 

@@ -41,6 +41,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libssl-dev libayatana-appindicator3-dev librsvg2-dev
 
+      - name: Build tauri frontend
+        run: |
+          cd packages/desktop
+          pnpm build
+          cd ../..
+
       - name: Lint Rust
         run: |
           cargo clippy --all-targets --all-features -- -D warnings
@@ -122,6 +128,7 @@ jobs:
         run: |
           cd packages/desktop
           pnpm build
+          cd ../..
 
       - name: Run tests
         run: |

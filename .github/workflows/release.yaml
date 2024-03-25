@@ -32,6 +32,8 @@ jobs:
 
       - name: Setup Rust
         uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          cache: false
 
       - name: install dependencies (ubuntu only)
         if: matrix.platform == 'ubuntu-22.04'
@@ -42,30 +44,12 @@ jobs:
       - name: install frontend dependencies
         run: pnpm install
 
-      - name: Clear cache
-        if: matrix.platform == 'windows-latest'
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const caches = await github.rest.actions.getActionsCacheList({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-            })
-            for (const cache of caches.data.actions_caches) {
-              console.log(cache)
-              github.rest.actions.deleteActionsCacheById({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                cache_id: cache.id,
-              })
-            }
-
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: v__VERSION__
-          releaseName: "Sense APP v__VERSION__"
+          releaseName: "Sense DESKTOP v__VERSION__"
           releaseBody: "See the assets to download this version."
           releaseDraft: true
           prerelease: false

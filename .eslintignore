@@ -30,3 +30,4 @@ packages/*/yarn.lock
 # Cargo
 /target
 packages/*/src-tauri/target
+packages/*/src-tauri/gen

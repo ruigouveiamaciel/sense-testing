@@ -27,3 +27,4 @@ packages/*/vite.config.ts.timestamp-*
 # Cargo
 /target
 packages/*/src-tauri/target
+packages/*/src-tauri/gen

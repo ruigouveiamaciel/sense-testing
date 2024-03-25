@@ -11,6 +11,7 @@
 node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+.pre-commit-config.yaml
 
 packages/*/!.env.example
 packages/*/.DS_Store

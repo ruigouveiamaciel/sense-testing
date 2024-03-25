@@ -89,10 +89,12 @@
               clippy = {
                 enable = true;
                 entry = pkgs.lib.mkDefault "cargo clippy --all-targets --all-features -- -D warnings";
+                files = pkgs.lib.mkDefault "";
               };
               eslint = {
                 enable = true;
                 entry = pkgs.lib.mkDefault "pnpm lint";
+                files = pkgs.lib.mkDefault "";
               };
             };
           })

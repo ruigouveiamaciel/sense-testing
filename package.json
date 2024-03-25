@@ -5,6 +5,8 @@
     "preinstall": "npx only-allow pnpm",
     "build": "pnpm run -r build",
     "test": "pnpm run -r test",
+    "test:unit": "pnpm run -r test:unit",
+    "test:integration": "pnpm run -r test:integration",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write ."
   },

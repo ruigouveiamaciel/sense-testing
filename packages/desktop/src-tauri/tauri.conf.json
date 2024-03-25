@@ -1,6 +1,6 @@
 {
   "productName": "Sense DESKTOP",
-  "version": "3.0.0-alpha.0",
+  "version": "0.0.0",
   "identifier": "com.scientisst.sense",
   "build": {
     "beforeDevCommand": "pnpm dev",

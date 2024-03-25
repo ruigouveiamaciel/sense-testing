@@ -1,6 +1,6 @@
 {
   "name": "@scientisst/sense-apps",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "pnpm run -r build",

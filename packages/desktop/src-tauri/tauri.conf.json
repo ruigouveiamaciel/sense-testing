@@ -8,7 +8,8 @@
     "beforeBuildCommand": "pnpm build",
     "frontendDist": "../build"
   },
-  "app": {"windows": [
+  "app": {
+    "windows": [
       {
         "title": "SENSE Desktop",
         "width": 800,

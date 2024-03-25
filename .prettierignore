@@ -1,4 +1,4 @@
-flake.lock 
+flake.lock
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
@@ -8,3 +8,8 @@ yarn.lock
 **/pnpm-lock.yaml
 **/package-lock.json
 **/yarn.lock
+
+
+# Cargo
+/target
+packages/*/src-tauri/target

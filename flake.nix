@@ -86,9 +86,16 @@
             };
 
             pre-commit.hooks = {
-              lint = {
+              lint-javascript = {
                 enable = true;
-                entry = pkgs.lib.mkDefault "pnpm lint && cargo clippy --all-targets --all-features -- -D warnings";
+                entry = pkgs.lib.mkDefault "pnpm lint";
+                files = "";
+                pass_filenames = false;
+              };
+              lint-rust = {
+                enable = true;
+                entry = pkgs.lib.mkDefault "${rust-toolchain}/bin/cargo --all-targets --all-features -- -D warnings";
+                files = "";
                 pass_filenames = false;
               };
             };

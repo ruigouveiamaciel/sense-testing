@@ -1,6 +1,18 @@
 {
   "singleQuote": false,
   "trailingComma": "none",
-  "plugins": ["prettier-plugin-svelte"],
-  "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+  "plugins": [
+    "prettier-plugin-svelte",
+    "prettier-plugin-tailwindcss",
+    "@trivago/prettier-plugin-sort-imports"
+  ],
+  "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }],
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "(^svelte$|^svelte/(.*)$|^@sveltejs/(.*)$)",
+    "(^\\$lib$|^\\$lib/(.*)$|^@scientisst/sense-ui$|^@scientisst/sense-ui/(.*)$)",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

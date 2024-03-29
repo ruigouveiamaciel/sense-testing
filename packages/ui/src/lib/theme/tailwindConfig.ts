@@ -1,4 +1,8 @@
 import { Hct, argbFromHex, hexFromArgb } from "@material/material-color-utilities";
+import aspectRatioPlugin from "@tailwindcss/aspect-ratio";
+import containerQueriesPlugin from "@tailwindcss/container-queries";
+import formsPlugin from "@tailwindcss/forms";
+import typographyPlugin from "@tailwindcss/typography";
 import type { Config } from "tailwindcss";
 
 function hexToHue(hex: string) {
@@ -72,8 +76,10 @@ export default {
       },
       outline: {
         DEFAULT: hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 50),
+        dark: hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 60),
         variant: {
-          DEFAULT: hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 80)
+          DEFAULT: hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 80),
+          dark: hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 30)
         }
       },
       on: {
@@ -118,6 +124,54 @@ export default {
           }
         }
       }
+    },
+    extend: {
+      typography: ({ theme }: { theme: (path: string) => string }) => ({
+        surface: {
+          css: {
+            "--tw-prose-body": theme("colors.on.surface.DEFAULT"),
+            "--tw-prose-headings": theme("colors.on.surface.DEFAULT"),
+            "--tw-prose-lead": theme("colors.on.surface.DEFAULT"),
+            "--tw-prose-links": theme("colors.primary.DEFAULT"),
+            "--tw-prose-bold": theme("colors.on.surface.DEFAULT"),
+            "--tw-prose-counters": theme("colors.on.surface.variant.DEFAULT"),
+            "--tw-prose-bullets": theme("colors.on.surface.variant.DEFAULT"),
+            "--tw-prose-hr": theme("colors.outline.variant.DEFAULT"),
+            "--tw-prose-quotes": theme("colors.on.surface.DEFAULT"),
+            "--tw-prose-quote-borders": theme("colors.primary.DEFAULT"),
+            "--tw-prose-captions": theme("colors.on.surface.variant.DEFAULT"),
+            "--tw-prose-code": theme("colors.inverse.on.surface.DEFAULT"),
+            "--tw-prose-pre-code": theme("colors.inverse.on.surface.DEFAULT"),
+            "--tw-prose-pre-bg": theme("colors.inverse.surface.DEFAULT"),
+            "--tw-prose-th-borders": theme("colors.outline.DEFAULT"),
+            "--tw-prose-td-borders": theme("colors.outline.variant.DEFAULT"),
+            "--tw-prose-invert-body": theme("colors.on.surface.dark"),
+            "--tw-prose-invert-headings": theme("colors.on.surface.dark"),
+            "--tw-prose-invert-lead": theme("colors.on.surface.dark"),
+            "--tw-prose-invert-links": theme("colors.primary.dark"),
+            "--tw-prose-invert-bold": theme("colors.on.surface.dark"),
+            "--tw-prose-invert-counters": theme("colors.on.surface.variant.dark"),
+            "--tw-prose-invert-bullets": theme("colors.on.surface.variant.dark"),
+            "--tw-prose-invert-hr": theme("colors.outline.variant.dark"),
+            "--tw-prose-invert-quotes": theme("colors.on.surface.dark"),
+            "--tw-prose-invert-quote-borders": theme("colors.primary.dark"),
+            "--tw-prose-invert-captions": theme("colors.on.surface.variant.dark"),
+            "--tw-prose-invert-code": theme("colors.invert.on.surface.dark"),
+            "--tw-prose-invert-pre-code": theme("colors.invert.on.surface.dark"),
+            "--tw-prose-invert-pre-bg": theme("colors.invert.surface.dark"),
+            "--tw-prose-invert-th-borders": theme("colors.outline.dark"),
+            "--tw-prose-invert-td-borders": theme("colors.outline.variant.dark")
+          }
+        }
+      })
     }
-  }
+  },
+  plugins: [
+    formsPlugin({
+      strategy: "base"
+    }),
+    containerQueriesPlugin,
+    aspectRatioPlugin,
+    typographyPlugin
+  ]
 } satisfies Config;

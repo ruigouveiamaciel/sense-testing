@@ -1,1 +1,1 @@
-// Reexport your entry components here
+export { default as TailwindTheme } from "./theme/TailwindTheme.svelte";

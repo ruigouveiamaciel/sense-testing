@@ -24,7 +24,8 @@
     },
     "./theme/tailwind-config": {
       "types": "./dist/theme/tailwindConfig.d.ts",
-      "require": "./dist/theme/tailwindConfig.js"
+      "require": "./dist/theme/tailwindConfig.js",
+      "import": "./dist/theme/tailwindConfig.js"
     },
     "./theme/global.css": {
       "require": "./dist/theme/global.css",
@@ -34,7 +35,8 @@
   "files": [
     "dist",
     "!dist/**/*.test.*",
-    "!dist/**/*.spec.*"
+    "!dist/**/*.spec.*",
+    "!dist/**/*.stories.*"
   ],
   "peerDependencies": {
     "svelte": "^4.0.0"

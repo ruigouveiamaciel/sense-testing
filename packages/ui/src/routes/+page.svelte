@@ -67,12 +67,6 @@
     you mean I lose all the other base styles too?
   </blockquote>
 
-  <pre>
-    <code>
-      console.log('Hello, world!')
-    </code>
-  </pre>
-
   <p>
     For more information about how to use the plugin and the features it includes, <a href={"#"}>
       read the documentation

@@ -1,0 +1,28 @@
+{
+  "name": "@scientisst/storybook",
+  "version": "3.0.0-alpha.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "storybook": "pnpm vite build && concurrently 'pnpm:watch:*'",
+    "build": "pnpm build:tailwind && storybook build",
+    "watch:storybook": "storybook dev -p 6006",
+    "watch:tailwind": "pnpm build:tailwind --watch",
+    "build:tailwind": "tailwindcss -i ../ui/src/lib/theme/global.css -o .storybook/tailwind.css"
+  },
+  "type": "module",
+  "dependencies": {
+    "@scientisst/sense-ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "8.0.6",
+    "@storybook/addon-essentials": "8.0.6",
+    "@storybook/addon-interactions": "8.0.6",
+    "@storybook/addon-links": "8.0.6",
+    "@storybook/blocks": "8.0.6",
+    "@storybook/svelte": "8.0.6",
+    "@storybook/sveltekit": "8.0.6",
+    "storybook": "8.0.6"
+  }
+}

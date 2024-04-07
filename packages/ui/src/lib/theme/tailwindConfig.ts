@@ -89,11 +89,12 @@ export default {
     },
     borderRadius: {
       none: "0px",
-      sm: "2px",
-      md: "4px",
-      lg: "6px",
-      xl: "8px",
-      full: "9999px"
+      full: "9999px",
+      xs: "4px",
+      sm: "8px",
+      md: "12px",
+      lg: "16px",
+      xl: "28px"
     },
     borderWidth: {
       DEFAULT: "1px",
@@ -108,10 +109,31 @@ export default {
       8: "8px"
     },
     boxShadow: {
-      none: "none"
+      none: "none",
+      "elevation-0":
+        "rgba(0, 0, 0, 0.2) 0px 0px 0px 0px, rgba(0, 0, 0, 0.14) 0px 0px 0px 0px, rgba(0, 0, 0, 0.12) 0px 0px 0px 0px",
+      "elevation-1":
+        "rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px",
+      "elevation-3":
+        "rgba(0, 0, 0, 0.2) 0px 3px 3px -2px, rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px",
+      "elevation-6":
+        "rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px",
+      "elevation-8":
+        "rgba(0, 0, 0, 0.2) 0px 5px 5px -3px, rgba(0, 0, 0, 0.14) 0px 8px 10px 1px, rgba(0, 0, 0, 0.12) 0px 3px 14px 2px",
+      "elevation-12":
+        "rgba(0, 0, 0, 0.2) 0px 7px 8px -4px, rgba(0, 0, 0, 0.14) 0px 12px 17px 2px, rgba(0, 0, 0, 0.12) 0px 5px 22px 4px"
     },
     dropShadow: {
       none: "0 0 #0000"
+    },
+    opacity: {
+      0: "0%",
+      hover: "8%",
+      focus: "10%",
+      press: "10%",
+      drag: "16%",
+      disabled: "38%",
+      100: "100%"
     },
     fontFamily: {
       sans: ["ui-sans-serif", "system-ui", "sans-serif"],

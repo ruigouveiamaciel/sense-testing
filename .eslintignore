@@ -31,3 +31,12 @@ packages/*/yarn.lock
 /target
 packages/*/src-tauri/target
 packages/*/src-tauri/gen
+
+# Storybook
+*storybook.log
+storybook-static
+tailwind.css
+
+packages/*/*storybook.log
+packages/*/storybook-static
+packages/*/.storybook/tailwind.css

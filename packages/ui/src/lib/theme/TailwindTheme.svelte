@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts">
   import { Hct, argbFromHex } from "@material/material-color-utilities";
 
   function hexToHue(hex: string) {
@@ -24,66 +24,74 @@
   const PRIMARY_CHROME_DARK_THEME = 20;
   const NEUTRAL_CHROME_LIGHT_THEME = 5;
   const NEUTRAL_CHROME_DARK_THEME = 5;
-</script>
 
-<script lang="ts">
-  import "./global.css";
+  function generateLightPalette(hue: number) {
+    return `
+      --color-primary: ${hct(hue, PRIMARY_CHROME_LIGHT_THEME, 40)};
+      --color-primary-container: ${hct(hue, PRIMARY_CHROME_LIGHT_THEME, 90)};
+      --color-error: ${hct(ERROR_HUE, PRIMARY_CHROME_LIGHT_THEME, 40)};
+      --color-error-container: ${hct(ERROR_HUE, PRIMARY_CHROME_LIGHT_THEME, 90)};
+      --color-surface: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 98)};
+      --color-surface-variant: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 90)};
+      --color-surface-container-highest: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 90)};
+      --color-surface-container-high: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 92)};
+      --color-surface-container: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 94)};
+      --color-surface-container-low: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 96)};
+      --color-surface-container-lowest: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 100)};
+      --color-outline: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 50)};
+      --color-outline-variant: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 80)};
+      --color-on-primary: ${hct(hue, PRIMARY_CHROME_LIGHT_THEME, 100)};
+      --color-on-primary-container: ${hct(hue, PRIMARY_CHROME_LIGHT_THEME, 10)};
+      --color-on-error: ${hct(ERROR_HUE, PRIMARY_CHROME_LIGHT_THEME, 100)};
+      --color-on-error-container: ${hct(ERROR_HUE, PRIMARY_CHROME_LIGHT_THEME, 10)};
+      --color-on-surface: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 10)};
+      --color-on-surface-variant: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 30)};
+      --color-inverse-primary: ${hct(hue, PRIMARY_CHROME_LIGHT_THEME, 80)};
+      --color-inverse-surface: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 20)};
+      --color-inverse-on-surface: ${hct(hue, NEUTRAL_CHROME_LIGHT_THEME, 95)};
+    `;
+  }
+
+  function generateDarkPalette(hue: number) {
+    return `
+      --color-primary: ${hct(hue, PRIMARY_CHROME_DARK_THEME, 80)};
+      --color-primary-container: ${hct(hue, PRIMARY_CHROME_DARK_THEME, 30)};
+      --color-error: ${hct(ERROR_HUE, PRIMARY_CHROME_DARK_THEME, 80)};
+      --color-error-container: ${hct(ERROR_HUE, PRIMARY_CHROME_DARK_THEME, 30)};
+      --color-surface: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 6)};
+      --color-surface-variant: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 30)};
+      --color-surface-container-highest: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 22)};
+      --color-surface-container-high: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 17)};
+      --color-surface-container: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 12)};
+      --color-surface-container-low: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 10)};
+      --color-surface-container-lowest: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 4)};
+      --color-outline: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 60)};
+      --color-outline-variant: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 30)};
+      --color-on-primary: ${hct(hue, PRIMARY_CHROME_DARK_THEME, 20)};
+      --color-on-primary-container: ${hct(hue, PRIMARY_CHROME_DARK_THEME, 90)};
+      --color-on-error: ${hct(ERROR_HUE, PRIMARY_CHROME_DARK_THEME, 20)};
+      --color-on-error-container: ${hct(ERROR_HUE, PRIMARY_CHROME_DARK_THEME, 90)};
+      --color-on-surface: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 90)};
+      --color-on-surface-variant: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 80)};
+      --color-inverse-primary: ${hct(hue, PRIMARY_CHROME_DARK_THEME, 40)};
+      --color-inverse-surface: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 90)};
+      --color-inverse-on-surface: ${hct(hue, NEUTRAL_CHROME_DARK_THEME, 20)};
+    `;
+  }
 </script>
 
 <svelte:head>
   <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html `
-    <style>
+    <${""}style>
       :root {
-        --color-primary: ${hct(PRIMARY_HUE, PRIMARY_CHROME_LIGHT_THEME, 40)};
-        --color-primary-container: ${hct(PRIMARY_HUE, PRIMARY_CHROME_LIGHT_THEME, 90)};
-        --color-error: ${hct(ERROR_HUE, PRIMARY_CHROME_LIGHT_THEME, 40)};
-        --color-error-container: ${hct(ERROR_HUE, PRIMARY_CHROME_LIGHT_THEME, 90)};
-        --color-surface: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 98)};
-        --color-surface-variant: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 90)};
-        --color-surface-container-highest: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 90)};
-        --color-surface-container-high: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 92)};
-        --color-surface-container: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 94)};
-        --color-surface-container-low: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 96)};
-        --color-surface-container-lowest: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 100)};
-        --color-outline: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 50)};
-        --color-outline-variant: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 80)};
-        --color-on-primary: ${hct(PRIMARY_HUE, PRIMARY_CHROME_LIGHT_THEME, 100)};
-        --color-on-primary-container: ${hct(PRIMARY_HUE, PRIMARY_CHROME_LIGHT_THEME, 10)};
-        --color-on-error: ${hct(ERROR_HUE, PRIMARY_CHROME_LIGHT_THEME, 100)};
-        --color-on-error-container: ${hct(ERROR_HUE, PRIMARY_CHROME_LIGHT_THEME, 10)};
-        --color-on-surface: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 10)};
-        --color-on-surface-variant: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 30)};
-        --color-inverse-primary: ${hct(PRIMARY_HUE, PRIMARY_CHROME_LIGHT_THEME, 80)};
-        --color-inverse-surface: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 20)};
-        --color-inverse-on-surface: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_LIGHT_THEME, 95)};
+        ${generateLightPalette(PRIMARY_HUE)}
       }
       @media (prefers-color-scheme: dark) {
         :root {
-          --color-primary: ${hct(PRIMARY_HUE, PRIMARY_CHROME_DARK_THEME, 80)};
-          --color-primary-container: ${hct(PRIMARY_HUE, PRIMARY_CHROME_DARK_THEME, 30)};
-          --color-error: ${hct(ERROR_HUE, PRIMARY_CHROME_DARK_THEME, 80)};
-          --color-error-container: ${hct(ERROR_HUE, PRIMARY_CHROME_DARK_THEME, 30)};
-          --color-surface: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 6)};
-          --color-surface-variant: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 30)};
-          --color-surface-container-highest: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 22)};
-          --color-surface-container-high: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 17)};
-          --color-surface-container: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 12)};
-          --color-surface-container-low: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 10)};
-          --color-surface-container-lowest: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 4)};
-          --color-outline: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 60)};
-          --color-outline-variant: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 30)};
-          --color-on-primary: ${hct(PRIMARY_HUE, PRIMARY_CHROME_DARK_THEME, 20)};
-          --color-on-primary-container: ${hct(PRIMARY_HUE, PRIMARY_CHROME_DARK_THEME, 90)};
-          --color-on-error: ${hct(ERROR_HUE, PRIMARY_CHROME_DARK_THEME, 20)};
-          --color-on-error-container: ${hct(ERROR_HUE, PRIMARY_CHROME_DARK_THEME, 90)};
-          --color-on-surface: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 90)};
-          --color-on-surface-variant: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 80)};
-          --color-inverse-primary: ${hct(PRIMARY_HUE, PRIMARY_CHROME_DARK_THEME, 40)};
-          --color-inverse-surface: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 90)};
-          --color-inverse-on-surface: ${hct(PRIMARY_HUE, NEUTRAL_CHROME_DARK_THEME, 20)};
+          ${generateDarkPalette(PRIMARY_HUE)}
         }
       }
-    </style>
+    <${""}/style>
   `}
 </svelte:head>

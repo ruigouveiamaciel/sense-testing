@@ -1,3 +1,8 @@
+<script>
+  import Card from "$lib/components/Card/Card.svelte";
+</script>
+
+<Card variant="filled">Hello world!</Card>
 <div class="flex min-h-32 flex-row p-4">
   <div class="bg-primary text-on-primary flex-grow basis-0 p-2">Primary</div>
   <div class="bg-on-primary text-primary flex-grow basis-0 p-2">On primary</div>
